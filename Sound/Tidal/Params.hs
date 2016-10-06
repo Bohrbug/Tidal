@@ -80,6 +80,9 @@ which performs a similar effect, but due to differences in implementation sounds
 (legato, legato_p)             = pF "legato" (Just 1)
 
 (clhatdecay, clhatdecay_p)       = pF "clhatdecay" (Just 0)
+(clicklevel, clicklevel_p)       = pF "clicklevel" (Just 0)
+(clicktype, clicktype_p)         = pF "clicktype" (Just 0)
+
 -- | fake-resampling, a pattern of numbers for lowering the sample rate, i.e. 1 for original 2 for half, 3 for a third and so on.
 (coarse, coarse_p)               = pI "coarse" (Just 0)
 -- | bit crushing, a pattern of numbers from 1 (for drastic reduction in bit-depth) to 16 (for barely no reduction).
@@ -115,15 +118,20 @@ Using `cut "0"` is effectively _no_ cutgroup.
 (delay, delay_p)                 = pF "delay" (Just 0)
 -- | a pattern of numbers from 0 to 1. Sets the amount of delay feedback.
 (delayfeedback, delayfeedback_p) = pF "delayfeedback" (Just (-1))
+(delayrate, delayrate_p)         = pF "delayrate" (Just 0)
 -- | a pattern of numbers from 0 to 1. Sets the length of the delay.
 (delaytime, delaytime_p)         = pF "delaytime" (Just (-1))
 (detune, detune_p)               = pF "detune" (Just 0)
+(distamount, distamount_p)       = pF "distamount" (Just 0)
+(disttype, disttype_p)           = pF "disttype" (Just 0)
 -- | when set to `1` will disable all reverb for this pattern. See `room` and `size` for more information about reverb.
 (dry, dry_p)                     = pF "dry" (Just 0)
 {- the same as `begin`, but cuts the end off samples, shortening them;
   e.g. `0.75` to cut off the last quarter of each sample.
 -}
 (end, end_p)                     = pF "end" (Just 1)
+(eqfreq, eqfreq_p)               = pF "eqfreq" (Just 0)
+(eqgain, eqgain_p)               = pF "eqgain" (Just 0)
 -- | a pattern of numbers that specify volume. Values less than 1 make the sound quieter. Values greater than 1 make the sound louder.
 (gain, gain_p)                   = pF "gain" (Just 1)
 (gate, gate_p)                   = pF "gate" (Just 0)
@@ -141,6 +149,7 @@ Using `cut "0"` is effectively _no_ cutgroup.
 (lclhat, lclhat_p)               = pF "lclhat" (Just 0)
 (lcrash, lcrash_p)               = pF "lcrash" (Just 0)
 (lfo, lfo_p)                     = pF "lfo" (Just 0)
+(level, level_p)                 = pF "level" (Just 0)
 (lfocutoffint, lfocutoffint_p)   = pF "lfocutoffint" (Just 0)
 (lfodelay, lfodelay_p)           = pF "lfodelay" (Just 0)
 (lfoint, lfoint_p)               = pF "lfoint" (Just 0)
@@ -157,8 +166,17 @@ Using `cut "0"` is effectively _no_ cutgroup.
 (loop, loop_p)                   = pF "loop" (Just 1)
 (lophat, lophat_p)               = pF "lophat" (Just 0)
 (lsnare, lsnare_p)               = pF "lsnare" (Just 0)
+(monogroup, monogroup_p)         = pF "monogroup" (Just 0)
 -- | specifies the sample variation to be used
 (n, n_p)                         = pI "n" (Just 0)
+(noisedecay, noisedecay_p)       = pF "noisdecay" (Just 0)
+(noisedecaymode, noisedecaymode_p)  = pF "noisedecaymode" (Just 0)
+(noisedynfilt, noisedynfilt_p)   = pF "noisedynfilt" (Just 0)
+(noisefiltfreq, noisefiltfreq_p) = pF "noisefiltfreq" (Just 0)
+(noisefiltres, noisefiltres_p)   = pF "noisefiltres" (Just 0)
+(noisefilttype, noisefilttype_p) = pF "noisefilttype" (Just 0)
+(noiselevel, noiselevel_p)       = pF "noislevel" (Just 0)
+
 {- |
 Pushes things forward (or backwards within built-in latency) in time. Allows for nice things like _swing_ feeling:
 
@@ -199,6 +217,9 @@ d1 $ stack [
 (release, release_p)             = pF "release" (Just (-1))
 -- | a pattern of numbers from 0 to 1. Specifies the resonance of the low-pass filter.
 (resonance, resonance_p)         = pF "resonance" (Just 0)
+(reverbamount, reverbamount_p)   = pF "reverbamount" (Just 0)
+(reverbcolor, reverbcolor_p)     = pF "reverbcolor" (Just 0)
+(reverbtype, reverbtype_p)       = pF "reverbtype" (Just 0)
 -- | a pattern of numbers from 0 to 1. Sets the level of reverb.
 (room, room_p)                   = pF "room" Nothing
 (sagogo, sagogo_p)               = pF "sagogo" (Just 0)
@@ -218,6 +239,16 @@ d1 $ stack [
 (stutterdepth, stutterdepth_p)   = pF "stutterdepth" (Just 0)
 (stuttertime, stuttertime_p)     = pF "stuttertime" (Just 0)
 (sustain, sustain_p)             = pF "sustain" (Just 0)
+(tonebendamount, tonebendamount_p) = pF "tonebendamount" (Just 0)
+(tonebendtime, tonebendtime_p)   = pF "tonebendtime" (Just 0)
+(tonedecay, tonedecayamount_p)   = pF "tonedecayamount" (Just 0)
+(tonedynfilt, tonedynfilt_p)     = pF "tonedynfilt" (Just 0)
+(tonefreq, tonefreq_p)           = pF "tonefreq" (Just 0)
+(tonelevel,tonelevel_p)          = pF "tonelevel" (Just 0)
+(tonespectra, tonespectra_p)     = pF "tonespectra" (Just 0)
+(tonepitchlsb, tonepitchlsb_p)   = pF "tonepitchlsb" (Just 0)
+(tonepitchmsb, tonepitchmsb_p)   = pF "tonepitchmsb" (Just 0)
+(tonewave, tonewave_p)           = pF "tonewave" (Just 0)
 (tomdecay, tomdecay_p)           = pF "tomdecay" (Just 0)
 {- | used in conjunction with `speed`, accepts values of "r" (rate, default behavior), "c" (cycles), or "s" (seconds).
 Using `unit "c"` means `speed` will be interpreted in units of cycles, e.g. `speed "1"` means samples will be stretched to fill a cycle.
